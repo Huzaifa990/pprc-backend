@@ -20,7 +20,47 @@ const addBlog = (req, res) => {
     }
 }
 
+
+const editBlogs = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const updateBlog = await Blogs.findByIdAndUpdate(id, req.body, {new: true});
+        res.status(200).send(updateBlog);
+    } catch (error) {
+        res.status(404).send(error);
+        
+    }
+}
+
+const deleteBlog = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const updateBlog = await Blogs.findByIdAndDelete(id);
+        res.status(200).send(updateBlog);
+    } catch (error) {
+        res.status(404).send(error);
+        
+    }
+}
+
+const findBlog = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const updateBlog = await Blogs.findById(id);
+        res.status(200).send(updateBlog);
+    } catch (error) {
+        res.status(404).send(error);
+        
+    }
+}
+
 module.exports = {
     getAllBlogs,
-    addBlog
+    addBlog,
+    editBlogs,
+    findBlog,
+    deleteBlog
 }
