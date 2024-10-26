@@ -72,14 +72,14 @@ function WorksheetGenerator() {
   };
 
   const randomSlope = () => {
-    return Math.random() > 0.5
+    return Math.random() > 2
       ? Math.floor(Math.random() * 5) + 1
       : -1 * (Math.floor(Math.random() * 5) + 1);
   };
 
   const randomVisibleIntercept = (intervalY) => {
     const visibleIntercepts = [];
-    const range = 10 * intervalY;
+    const range = 4 * intervalY;
     for (let i = -range; i <= range; i += intervalY) {
       visibleIntercepts.push(i);
     }
@@ -126,24 +126,91 @@ function WorksheetGenerator() {
     );
   };
 
-  const generateGraph = (slope, intercept, intervalX, intervalY) => {
-    const xMin = -10 * intervalX;
-    const xMax = 10 * intervalX;
+  //   const xMin = -5 * intervalX;
+  //   const xMax = 5 * intervalX;
+  //   const yMin = slope * xMin + intercept;
+  //   const yMax = slope * xMax + intercept;
+
+  //   // Data for the line extending fully across the graph
+  //   const data = [
+  //     { x: xMin, y: yMin },
+  //     { x: xMax, y: yMax },
+  //   ];
+
+  //   const xDomain = [-5 * intervalX, 5 * intervalX];
+  //   const yDomain = [-5 * intervalY, 5 * intervalY];
+
+  //   const xTicks = getTicks(xDomain, intervalX);
+  //   const yTicks = getTicks(yDomain, intervalY);
+
+  //   return (
+  //     <VictoryChart
+  //       domain={{ x: xDomain, y: yDomain }}
+  //       height={400}
+  //       width={400}
+  //     >
+  //       <VictoryLine
+  //         data={data}
+  //         style={{
+  //           data: { stroke: "black", strokeWidth: 1.5 },
+  //         }}
+  //       />
+  //       <VictoryAxis
+  //         tickValues={xTicks}
+  //         style={{
+  //           tickLabels: { fontSize: 8, padding: 5 },
+  //           grid: { stroke: "lightgray" },
+  //           axis: { stroke: "black", strokeWidth: 1.5 },
+  //         }}
+  //       />
+  //       <VictoryAxis
+  //         dependentAxis
+  //         tickValues={yTicks}
+  //         style={{
+  //           tickLabels: { fontSize: 8, padding: 5 },
+  //           grid: { stroke: "lightgray" },
+  //           axis: { stroke: "black", strokeWidth: 1.5 },
+  //         }}
+  //       />
+  //     </VictoryChart>
+  //   );
+  // };
+  const generateGraph = () => {
+    const intervalX = randomInterval();  // Random interval for x-axis
+    let intervalY = randomInterval();    // Random interval for y-axis
+  
+    // Ensure intervalY is not the same as intervalX
+    while (intervalY === intervalX) {
+      intervalY = randomInterval();
+    }
+  
+    // Set a random y-intercept within a visible range
+    const intercept = randomVisibleIntercept(intervalY);
+  
+    // Define rise and run as multiples of the chosen intervals
+    const rise = (Math.floor(Math.random() * 4)+1) * intervalY;  // Move 3 intervals up/down (customize as needed)
+    const run = (Math.floor(Math.random() * 4)+1) * intervalX;   // Move 2 intervals left/right (customize as needed)
+  
+    // Calculate the slope as rise/run
+    const slope = rise / run;
+  
+    const xMin = -5 * intervalX;
+    const xMax = 5 * intervalX;
     const yMin = slope * xMin + intercept;
     const yMax = slope * xMax + intercept;
-
+  
     // Data for the line extending fully across the graph
     const data = [
       { x: xMin, y: yMin },
       { x: xMax, y: yMax },
     ];
-
-    const xDomain = [-10 * intervalX, 10 * intervalX];
-    const yDomain = [-10 * intervalY, 10 * intervalY];
-
+  
+    const xDomain = [-5 * intervalX, 5 * intervalX];
+    const yDomain = [-5 * intervalY, 5 * intervalY];
+  
     const xTicks = getTicks(xDomain, intervalX);
     const yTicks = getTicks(yDomain, intervalY);
-
+  
     return (
       <VictoryChart
         domain={{ x: xDomain, y: yDomain }}
@@ -176,7 +243,7 @@ function WorksheetGenerator() {
       </VictoryChart>
     );
   };
-
+  
   const getTicks = (domain, interval) => {
     const ticks = [];
     for (let i = domain[0]; i <= domain[1]; i += interval) {
