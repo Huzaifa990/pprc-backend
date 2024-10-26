@@ -1,0 +1,25 @@
+.worksheet-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.problem {
+  margin-top: 20px;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.triangle-model {
+  margin-top: 10px;
+}
+
+.squares {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
