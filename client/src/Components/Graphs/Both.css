@@ -1,0 +1,40 @@
+.worksheet-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.problem-container {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 45%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+}
+
+.worksheet-output-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.worksheet-output-container > div {
+  width: calc(50% - 20px); /* 50% width minus gap */
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}

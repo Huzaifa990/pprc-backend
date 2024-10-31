@@ -4,7 +4,7 @@ import { VictoryChart, VictoryLine, VictoryAxis } from "victory";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-function WorksheetGenerator() {
+function WorksheetGenerator2() {
   const [numQuestions, setNumQuestions] = useState(5);
   const [displayMode, setDisplayMode] = useState("both");
   const [worksheetOutput, setWorksheetOutput] = useState([]);
@@ -71,11 +71,11 @@ function WorksheetGenerator() {
     }
   };
 
-  // const randomSlope = () => {
-  //   return Math.random() > 2
-  //     ? Math.floor(Math.random() * 5) + 1
-  //     : -1 * (Math.floor(Math.random() * 5) + 1);
-  // };
+  //   const randomSlope = () => {
+  //     return Math.random() > 2
+  //       ? Math.floor(Math.random() * 5) + 1
+  //       : -1 * (Math.floor(Math.random() * 5) + 1);
+  //   };
   const randomSlope = () => {
     const slope = Math.floor(Math.random() * 5) + 1; // Generates a value between 1 and 5
     return Math.random() < 0.5 ? slope : -slope; // 50% chance to be positive or negative
@@ -83,7 +83,7 @@ function WorksheetGenerator() {
 
   const randomVisibleIntercept = (intervalY) => {
     const visibleIntercepts = [];
-    const range = 4 * intervalY;
+    const range = 9 * intervalY;
     for (let i = -range; i <= range; i += intervalY) {
       visibleIntercepts.push(i);
     }
@@ -100,7 +100,7 @@ function WorksheetGenerator() {
     const rows = [];
     const usedXValues = new Set();
 
-    while (usedXValues.size < 5) {
+    while (usedXValues.size < 10) {
       const x = Math.floor(Math.random() * 10) - 5;
       if (!usedXValues.has(x) && x !== 0) {
         usedXValues.add(x);
@@ -192,12 +192,12 @@ function WorksheetGenerator() {
     const intercept = randomVisibleIntercept(intervalY);
 
     // Define rise and run as multiples of the chosen intervals
-    const rise = (Math.floor(Math.random() * 4) + 1) * intervalY; // Move 3 intervals up/down (customize as needed)
-    const run = (Math.floor(Math.random() * 4) + 1) * intervalX; // Move 2 intervals left/right (customize as needed)
+    const rise = (Math.floor(Math.random() * 9) + 1) * intervalY; // Move 3 intervals up/down (customize as needed)
+    const run = (Math.floor(Math.random() * 9) + 1) * intervalX; // Move 2 intervals left/right (customize as needed)
     const slope = Math.random() < 0.5 ? rise / run : -rise / run;
 
-    const xMin = -5 * intervalX;
-    const xMax = 5 * intervalX;
+    const xMin = -10 * intervalX;
+    const xMax = 10 * intervalX;
     const yMin = slope * xMin + intercept;
     const yMax = slope * xMax + intercept;
 
@@ -207,8 +207,8 @@ function WorksheetGenerator() {
       { x: xMax, y: yMax },
     ];
 
-    const xDomain = [-5 * intervalX, 5 * intervalX];
-    const yDomain = [-5 * intervalY, 5 * intervalY];
+    const xDomain = [-10 * intervalX, 10 * intervalX];
+    const yDomain = [-10 * intervalY, 10 * intervalY];
 
     const xTicks = getTicks(xDomain, intervalX);
     const yTicks = getTicks(yDomain, intervalY);
@@ -321,4 +321,4 @@ function WorksheetGenerator() {
   );
 }
 
-export default WorksheetGenerator;
+export default WorksheetGenerator2;

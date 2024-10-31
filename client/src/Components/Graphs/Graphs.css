@@ -84,3 +84,31 @@ canvas {
   height: 400px; /* Ensure equal height for square aspect ratio */
   border: 1px solid black; /* Outer border for the canvas */
 }
+
+.worksheet-output-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.worksheet-output-container > div {
+  width: calc(50% - 20px); /* 50% width minus gap */
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+.worksheet-output-container table {
+  width: 200px; /* Fixed width for tables */
+  margin: 0 auto; /* Center the table */
+  border-collapse: collapse;
+}
+
+.worksheet-output-container th,
+.worksheet-output-container td {
+  border: 1px solid black;
+  padding: 5px;
+  width: 50%; /* Ensures x and y columns are equal width */
+  text-align: center; /* Optional: Center-aligns text */
+}
