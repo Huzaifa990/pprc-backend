@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost:27017/kelsey-backend")
+  .connect("mongodb+srv://khaas25:1234@wlms.zjs0lk4.mongodb.net/jason-native")
   .then(() => {
     console.log("Connected to DB");
   })
