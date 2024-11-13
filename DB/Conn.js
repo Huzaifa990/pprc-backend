@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb+srv://khaas25:1234@wlms.zjs0lk4.mongodb.net/jason-native")
+  .connect("mongodb+srv://jhamiltonramm:kh2ReBWziaJuhRID@jhramm.zivdd.mongodb.net/jason-native")
   .then(() => {
     console.log("Connected to DB");
   })
